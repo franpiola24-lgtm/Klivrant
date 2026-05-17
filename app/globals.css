@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.transitions-enabled * {
+    transition-property: background-color, color, border-color, fill, stroke;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+  }
+
+  body {
+    @apply bg-canvas text-ink dark:bg-ink dark:text-white;
+    font-feature-settings: "ss01", "cv11";
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-6;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-br from-brand-500 to-brand-400 bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-3 text-[14px] font-medium text-white shadow-sm transition hover:bg-ink/90 dark:bg-brand-500 dark:hover:bg-brand-600;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-lg border border-canvas-border bg-white px-5 py-3 text-[14px] font-medium text-ink transition hover:bg-canvas-alt dark:border-night-border dark:bg-night-surface dark:text-white dark:hover:bg-night-border;
+  }
+
+  .section-tag {
+    @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-600;
+  }
+  .section-tag::before {
+    content: "";
+    @apply inline-block h-px w-4 bg-brand-500;
+  }
+}
