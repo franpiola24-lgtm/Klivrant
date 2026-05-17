@@ -26,18 +26,14 @@ export function Navbar() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <a
-            href="#contacto"
-            className="hidden text-[13px] font-medium text-ink md:inline-block dark:text-white"
-          >
-            Iniciar sesión
-          </a>
           <ThemeToggle />
           <a
-            href="#contacto"
+            href="https://wa.me/5491100000000?text=Hola%20Klivrant%2C%20quiero%20saber%20más%20sobre%20automatización"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-md bg-ink px-3.5 py-2 text-[13px] font-medium text-white transition hover:bg-ink/90 dark:bg-brand-500 dark:hover:bg-brand-600"
           >
-            Empezar
+            WhatsApp
             <ArrowRight size={13} />
           </a>
         </div>

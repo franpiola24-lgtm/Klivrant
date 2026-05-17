@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Mail } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Logo } from "./Logo";
 
 export function CTAFinal() {
@@ -8,42 +8,44 @@ export function CTAFinal() {
       className="relative overflow-hidden border-b border-canvas-line py-24 bg-gradient-to-b from-canvas-alt to-brand-100 dark:border-night-border dark:from-ink dark:to-ink"
     >
       <div className="container-page text-center">
-        <p className="section-tag inline-flex justify-center">Empezá hoy</p>
+        <p className="section-tag inline-flex justify-center">Última oportunidad</p>
         <h2 className="mx-auto mt-4 max-w-xl text-[40px] font-semibold leading-[1.05] tracking-tightest text-ink md:text-[48px] dark:text-white">
-          Tu empresa,{" "}
-          <span className="gradient-text">en otra escala.</span>
+          ¿Seguís haciendo{" "}
+          <span className="gradient-text">todo a mano?</span>
         </h2>
         <p className="mx-auto mt-4 max-w-md text-[16px] leading-relaxed text-ink-muted dark:text-night-muted">
-          Una charla de 30 minutos basta para saber si Klivrant es para vos.
-          Sin compromiso, sin presentaciones plantillas.
+          Cada día que pasa sin automatizar es tiempo y plata que perdés.
+          Escribinos ahora y en 30 minutos sabés si Klivrant es para tu empresa.
         </p>
 
         <div className="mt-9 flex flex-wrap items-center justify-center gap-2.5">
           <a
-            href="mailto:hola@klivrant.com?subject=Quiero agendar una demo"
+            href="https://wa.me/5491100000000?text=Hola%20Klivrant%2C%20quiero%20saber%20más%20sobre%20automatización"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary"
           >
-            Agendar demo gratis
+            Escribirnos por WhatsApp →
             <ArrowRight size={14} />
           </a>
-          <a href="mailto:hola@klivrant.com" className="btn-ghost">
-            <Mail size={13} />
-            hola@klivrant.com
+          <a href="#precios" className="btn-ghost">
+            Ver todos los servicios
+            <ArrowRight size={12} />
           </a>
         </div>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-[12px] text-ink-subtle dark:text-night-muted">
           <span className="flex items-center gap-1.5">
             <Check size={13} className="text-success" />
-            Respuesta en 24h
+            Respuesta en menos de 1 hora
           </span>
           <span className="flex items-center gap-1.5">
             <Check size={13} className="text-success" />
-            Sin compromiso
+            Primera consulta sin costo
           </span>
           <span className="flex items-center gap-1.5">
             <Check size={13} className="text-success" />
-            Garantía 30 días
+            Resultados en 4 semanas
           </span>
         </div>
       </div>

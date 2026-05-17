@@ -42,33 +42,36 @@ export function Hero() {
       <div className="container-page relative pt-20 pb-16 text-center md:pt-24 md:pb-20">
         {/* Pill */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-300/40 bg-brand-100/60 px-3 py-1.5 text-[11px] font-medium text-brand-600">
-          <Sparkles size={13} className="text-brand-500" />
-          <strong className="font-semibold text-brand-700">Klivrant</strong>
-          <span>· ahora aceptando 3 nuevos proyectos</span>
+          <span>⚡</span>
+          <span>Empresas que automatizaron con Klivrant facturan un 30% más</span>
         </div>
 
         {/* H1 */}
         <h1 className="mx-auto max-w-3xl text-[44px] font-semibold leading-[1.02] tracking-tightest text-ink md:text-[60px] dark:text-white">
-          Automatizá tu empresa
+          Tu competencia ya
           <br />
-          <span className="gradient-text">con IA real.</span>
+          <span className="gradient-text">usa IA. ¿Y vos?</span>
         </h1>
 
         {/* Subtitle */}
         <p className="mx-auto mt-5 max-w-xl text-[16px] leading-[1.55] text-ink-muted md:text-[18px] dark:text-night-muted">
-          Diseñamos sistemas inteligentes, agentes de IA y dashboards a medida
-          para empresas que quieren operar más rápido sin sumar equipo. Listo en
-          semanas.
+          Automatizamos los procesos que te roban tiempo y dinero. Tu empresa
+          opera más rápido, sin contratar más gente, sin complicaciones.
         </p>
 
         {/* CTAs */}
         <div className="mt-9 flex flex-wrap items-center justify-center gap-2.5">
-          <a href="#contacto" className="btn-primary">
-            Agendar demo gratis
+          <a
+            href="https://wa.me/5491100000000?text=Hola%20Klivrant%2C%20quiero%20saber%20más%20sobre%20automatización"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Hablar por WhatsApp
             <ArrowRight size={14} />
           </a>
-          <a href="#producto" className="btn-ghost">
-            Ver cómo funciona
+          <a href="#casos" className="btn-ghost">
+            Ver casos reales
             <Play size={12} />
           </a>
         </div>
@@ -77,15 +80,15 @@ export function Hero() {
         <div className="mt-7 flex flex-wrap items-center justify-center gap-5 text-[12px] text-ink-subtle dark:text-night-muted">
           <span className="flex items-center gap-1.5">
             <Check size={14} className="text-success" />
-            Sin tarjeta de crédito
+            Respuesta en menos de 1 hora
           </span>
           <span className="flex items-center gap-1.5">
             <Check size={14} className="text-success" />
-            Precios visibles
+            Primera consulta sin costo
           </span>
           <span className="flex items-center gap-1.5">
             <Check size={14} className="text-success" />
-            Garantía de 30 días
+            Resultados en 4 semanas
           </span>
         </div>
 

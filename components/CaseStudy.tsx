@@ -7,8 +7,8 @@ export function CaseStudy() {
       <div className="container-page">
         <p className="section-tag">Caso real</p>
         <h2 className="mt-4 max-w-2xl text-[36px] font-semibold leading-[1.08] tracking-tighter text-ink md:text-[40px] dark:text-white">
-          Lo medimos.{" "}
-          <span className="text-brand-600">Lo entregamos.</span>
+          Resultados que{" "}
+          <span className="text-brand-600">hablan solos.</span>
         </h2>
         <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-ink-muted dark:text-night-muted">
           Cada proyecto se cierra con métricas concretas. Sin &ldquo;depende del
@@ -17,10 +17,10 @@ export function CaseStudy() {
 
         <div className="mt-10 rounded-2xl border border-canvas-border bg-white p-8 shadow-sm md:p-10 dark:border-night-border dark:bg-ink">
           <p className="max-w-2xl text-[20px] font-medium leading-[1.4] tracking-tight text-ink md:text-[24px] dark:text-white">
-            &ldquo;Automatizamos la carga de facturas y la atención inicial de
-            clientes. El equipo pasó de hacer horas extra a cerrar a las 18hs.{" "}
+            &ldquo;Antes llegaba a casa a las 10 de la noche. Hoy cierro a las
+            6, mis balances salen en plazo y recuperé los fines de semana.{" "}
             <span className="gradient-text font-semibold">
-              Recuperamos un mes de trabajo por trimestre.
+              No lo puedo creer todavía.
             </span>
             &rdquo;
           </p>
