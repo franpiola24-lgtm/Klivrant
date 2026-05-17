@@ -1,76 +1,13 @@
-"use client";
-
-import { useEffect } from "react";
-
-export default function Page() {
-  useEffect(() => {
-    function toggleDark() {
-      const isDark = document.documentElement.classList.toggle("dark");
-      try {
-        localStorage.setItem("k-theme", isDark ? "dark" : "light");
-      } catch (e) {}
-    }
-
-    function initTheme() {
-      try {
-        const s = localStorage.getItem("k-theme");
-        if (s === "dark" || (!s && matchMedia && matchMedia("(prefers-color-scheme: dark)").matches)) {
-          document.documentElement.classList.add("dark");
-        }
-      } catch (e) {}
-    }
-
-    function toggleFaq(el: Element) {
-      const o = el.classList.contains("open");
-      document.querySelectorAll(".fi.open").forEach(function (i) {
-        i.classList.remove("open");
-        const ft = i.querySelector(".ftog");
-        if (ft) {
-          ft.innerHTML =
-            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
-        }
-      });
-      if (!o) {
-        el.classList.add("open");
-        const ft = el.querySelector(".ftog");
-        if (ft)
-          ft.innerHTML =
-            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>';
-      }
-    }
-
-    initTheme();
-
-    const btn = document.querySelector(".btn-mode");
-    if (btn) btn.addEventListener("click", toggleDark);
-
-    document.querySelectorAll<HTMLElement>(".fi").forEach((el) => {
-      el.addEventListener("click", () => toggleFaq(el));
-    });
-
-    const obs = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (x) {
-          if (x.isIntersecting) x.target.classList.add("in");
-        });
-      },
-      { threshold: 0.07 }
-    );
-    document.querySelectorAll<HTMLElement>(".fade").forEach(function (el) {
-      obs.observe(el);
-    });
-
-    return () => {
-      if (btn) btn.removeEventListener("click", toggleDark);
-      document.querySelectorAll<HTMLElement>(".fi").forEach((el) => {
-        el.replaceWith(el.cloneNode(true));
-      });
-      obs.disconnect();
-    };
-  }, []);
-
-  const html = `
-<style>@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klivrant — Automatización con IA para empresas</title>
+<meta name="description" content="Automatizamos los procesos de tu empresa con IA. Más velocidad, menos errores, sin contratar más gente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 
@@ -379,6 +316,8 @@ footer{background:#0D0D12;padding:48px 28px}
 .fade{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .fade.in{opacity:1;transform:none}
 </style>
+</head>
+<body>
 
 <nav>
   <div class="nw">
@@ -398,7 +337,7 @@ footer{background:#0D0D12;padding:48px 28px}
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="ne">
-      <button class="btn-mode" aria-label="Modo oscuro">
+      <button class="btn-mode" onclick="toggleDark()" aria-label="Modo oscuro">
         <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
@@ -453,7 +392,7 @@ footer{background:#0D0D12;padding:48px 28px}
 <div class="sband">
   <div class="sinner">
     <div class="slbl">Tecnología de clase mundial</div>
-    <div class="slogos"><span>◆ Claude AI</span><span>⚙ n8n</span><span>⌁ Firecrawl</span><span>◐ OpenAI</span><span>▲ Vercel</span><span>◇ Supabase</span></div>
+    <div class="slogos"><span>Claude AI</span><span>n8n</span><span>Firecrawl</span><span>OpenAI</span><span>Vercel</span><span>Supabase</span></div>
   </div>
 </div>
 
@@ -581,12 +520,14 @@ footer{background:#0D0D12;padding:48px 28px}
     <h2>Todo lo que querés saber <em>antes de empezar.</em></h2>
     <p class="lead" style="margin-bottom:40px">Las dudas más comunes que nos llegan antes del primer contacto.</p>
     <div>
-      <div class="fi"><div class="fh"><span class="fq">¿Tengo que saber de tecnología para trabajar con ustedes?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Para nada. Vos nos contás qué problema querés resolver — en tu idioma, sin tecnicismos — y nosotros nos encargamos de todo lo técnico. Al final te capacitamos para usar el sistema con confianza. Si algo no entendés, nos escribís y respondemos en menos de una hora.</p></div>
-      <div class="fi"><div class="fh"><span class="fq">¿Pueden integrarse con las herramientas que ya uso?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Sí. Trabajamos con las herramientas que ya usás: WhatsApp, Instagram, Gmail, Google Sheets, MercadoLibre, MercadoPago, AFIP, Shopify, Notion y muchas más. La idea no es que cambies todo lo que tenés, sino conectarlo inteligentemente para que funcione solo.</p></div>
-      <div class="fi"><div class="fh"><span class="fq">¿Voy a tener que pagar todos los meses?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">No es obligatorio. Podés contratar un proyecto puntual con un pago único y el sistema funciona para siempre sin costo recurrente. El retainer mensual es opcional para quienes quieren mejoras continuas, monitoreo y soporte prioritario.</p></div>
-      <div class="fi"><div class="fh"><span class="fq">¿Cómo cobran y en qué moneda?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Cotizamos en USD para mayor claridad. Aceptamos pago en pesos al tipo de cambio del día por transferencia o MercadoPago, y también en USD por transferencia. Facturamos con CUIT argentino, factura A o B según necesites.</p></div>
-      <div class="fi"><div class="fh"><span class="fq">¿Los datos de mi empresa están protegidos?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Sí. Firmamos un acuerdo de confidencialidad (NDA) antes de cualquier acceso a tu información. Los sistemas se montan en tu propia infraestructura cuando es posible, y nunca compartimos datos de clientes con terceros.</p></div>
-      <div class="fi">... (truncated in patch for brevity)</div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Tengo que saber de tecnología para trabajar con ustedes?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Para nada. Vos nos contás qué problema querés resolver — en tu idioma, sin tecnicismos — y nosotros nos encargamos de todo lo técnico. Al final te capacitamos para usar el sistema con confianza. Si algo no entendés, nos escribís y respondemos en menos de una hora.</p></div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Pueden integrarse con las herramientas que ya uso?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Sí. Trabajamos con las herramientas que ya usás: WhatsApp, Instagram, Gmail, Google Sheets, MercadoLibre, MercadoPago, AFIP, Shopify, Notion y muchas más. La idea no es que cambies todo lo que tenés, sino conectarlo inteligentemente para que funcione solo.</p></div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Voy a tener que pagar todos los meses?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">No es obligatorio. Podés contratar un proyecto puntual con un pago único y el sistema funciona para siempre sin costo recurrente. El retainer mensual es opcional para quienes quieren mejoras continuas, monitoreo y soporte prioritario.</p></div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Cómo cobran y en qué moneda?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Cotizamos en USD para mayor claridad. Aceptamos pago en pesos al tipo de cambio del día por transferencia o MercadoPago, y también en USD por transferencia. Facturamos con CUIT argentino, factura A o B según necesites.</p></div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Los datos de mi empresa están protegidos?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Sí. Firmamos un acuerdo de confidencialidad (NDA) antes de cualquier acceso a tu información. Los sistemas se montan en tu propia infraestructura cuando es posible, y nunca compartimos datos de clientes con terceros.</p></div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Cuánto tardo en ver resultados?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">La mayoría de los proyectos se entregan en 2 a 4 semanas. Los resultados son inmediatos desde el primer día de uso. Para proyectos más complejos el plazo puede extenderse, pero siempre lo acordamos antes de empezar.</p></div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Y si después algo deja de funcionar?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Los primeros 30 días de soporte son gratuitos para cualquier ajuste. Después ofrecemos un plan de mantenimiento desde USD 80/mes. Si no querés el plan, podés contactarnos cuando lo necesites y cotizamos la corrección.</p></div>
+      <div class="fi" onclick="toggleFaq(this)"><div class="fh"><span class="fq">¿Trabajan con empresas fuera de Argentina?</span><div class="ftog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><p class="fa2">Sí. Trabajamos con empresas de toda LATAM y España. Las reuniones son por videollamada y la entrega es 100% remota.</p></div>
     </div>
   </div>
 </div>
@@ -619,7 +560,12 @@ footer{background:#0D0D12;padding:48px 28px}
 <a href="https://wa.me/5491100000000?text=Hola%20Klivrant" class="wa" target="_blank" aria-label="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-`;
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
-}
+<script>
+function toggleDark(){document.documentElement.classList.toggle('dark');localStorage.setItem('k-theme',document.documentElement.classList.contains('dark')?'dark':'light')}
+(function(){var s=localStorage.getItem('k-theme');if(s==='dark'||(! s&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')})();
+function toggleFaq(el){var o=el.classList.contains('open');document.querySelectorAll('.fi.open').forEach(function(i){i.classList.remove('open');i.querySelector('.ftog').innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>'});if(!o){el.classList.add('open');el.querySelector('.ftog').innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>'}}
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.07});document.querySelectorAll('.fade').forEach(function(el){obs.observe(el)});
+</script>
+</body>
+</html>

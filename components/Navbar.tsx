@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { Wordmark } from "./Logo";
+import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
@@ -11,15 +11,28 @@ const links = [
 
 export function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-canvas-line bg-canvas/85 backdrop-blur-md dark:border-night-border dark:bg-ink/85">
+    <nav
+      className="sticky top-0 z-50"
+      style={{
+        background: "rgba(252,252,253,0.85)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
+      }}
+    >
       <div className="container-page flex items-center justify-between py-4">
-        <Wordmark />
+        <div className="flex items-center gap-2.5">
+          <Logo size={26} />
+          <span className="font-semibold tracking-[-0.4px]" style={{ fontSize: 15, color: "#0A0A0F" }}>
+            klivrant<span className="text-brand-500">.</span>
+          </span>
+        </div>
         <div className="hidden gap-6 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-[13px] font-medium text-ink-muted transition hover:text-ink dark:text-night-muted dark:hover:text-white"
+              className="text-[13px] transition-colors duration-200 hover:text-[#0A0A0F]"
+              style={{ color: "#5F5F69" }}
             >
               {l.label}
             </a>
@@ -28,12 +41,12 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <a
-            href="https://wa.me/5491100000000?text=Hola%20Klivrant%2C%20quiero%20saber%20más%20sobre%20automatización"
+            href="https://wa.me/5491100000000?text=Hola%20Klivrant%2C%20quiero%20saber%20m%C3%A1s%20sobre%20automatizaci%C3%B3n"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md bg-ink px-3.5 py-2 text-[13px] font-medium text-white transition hover:bg-ink/90 dark:bg-brand-500 dark:hover:bg-brand-600"
+            className="inline-flex items-center gap-1.5 rounded-[7px] bg-[#0A0A0F] px-[18px] py-[9px] text-[13px] font-medium text-white"
           >
-            WhatsApp
+            WhatsApp&nbsp;→
             <ArrowRight size={13} />
           </a>
         </div>
